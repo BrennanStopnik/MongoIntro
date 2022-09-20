@@ -37,14 +37,14 @@
 
 ## Assignment Results
 
-# Add all blogs
+### Add all blogs
 const newBlogPosts = [blog1, blog2, blog3,  blog4, blog5, blog6, blog7, blog8, blog9, blog10]
 db.posts.insertMany(newBlogPosts)
 
-# add single blog
+### add single blog
 db.posts.insertOne(blog11)
 
-# Find single blog by author
+### Find single blog by author
 db.posts.find({
     author: {
         $regex: /Turd/
@@ -57,7 +57,7 @@ db.posts.find({
 
 
 
-# All blogs data as variables with the new one added to the end as number 11
+### All blogs data as variables with the new one added to the end as number 11
 
 const blog1 = {
     createdAt: new Date("2022-04-16T06:33:29.080Z"),
