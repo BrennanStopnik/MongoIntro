@@ -24,6 +24,16 @@
 	- Find all blogs whose createdAt is after April 1, 2022
 
 
+## Mongo Assignment 1 - Part 2:
+
+- Write the following queries and add them to the README:
+	- Find all blogs where the field lastModified does not exist and 
+	- Find all blogs where the createdAt type is a date
+	- Combine the above two queries into one to find all blogs in which lastModified does not exist and createdAt is the type date
+- _Stretch_ 
+	- Find a blog with a specific phrase (or a more complex regular expression if you want to practice regexs) in the text
+	- Find all blogs that have "qui" in the categories array
+
 
 ## Assignment Results
 
