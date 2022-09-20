@@ -37,6 +37,28 @@
 
 ## Assignment Results
 
+# Add all blogs
+const newBlogPosts = [blog1, blog2, blog3,  blog4, blog5, blog6, blog7, blog8, blog9, blog10]
+db.posts.insertMany(newBlogPosts)
+
+# add single blog
+db.posts.insertOne(blog11)
+
+# Find single blog by author
+db.posts.find({
+    author: {
+        $regex: /Turd/
+    }
+})
+   .projection({})
+   .sort({_id:-1})
+   .limit(100)
+
+
+
+
+# All blogs data as variables with the new one added to the end as number 11
+
 const blog1 = {
     createdAt: new Date("2022-04-16T06:33:29.080Z"),
     title: "fugiat",
@@ -147,7 +169,14 @@ const blog10 = {
     objectId: 10
 }
     
+const blog11 = {
+ createdAt: new Date("2022-01-14T15:07:51.214Z"),
+ title: "hamjam",
+ text: "Nulla expedita libero ut accusantium vitae repellat et. Accusantium ipsa expedita ratione harum provident quia totam. Dicta facilis dicta saepe et. Est et delectus veritatis nihil. Magnam dolor iste perspiciatis officia blanditiis possimus.\nTotam alias corrupti doloribus. Nihil laboriosam expedita omnis nihil. Eos delectus nulla sit magni aut quae distinctio deserunt.\nAutem et aliquam quasi nam. Vero enim ullam voluptas ut quidem libero rerum. Nam omnis illo voluptatem non tempore ipsum. Qui nulla fugiat rerum.",
+ author: "Turd Fergusson",
+ lastModified: new Date(),
+ categories: ["rektum", "lollitia", "voluptuous"],
+ id: "4a571289-6d5c-4300-9614-53c6e1294b71",
+ objectId: 11
+}
  
-const newBlogPosts = [blog1, blog2, blog3,  blog4, blog5, blog6, blog7, blog8, blog9, blog10]
-
-db.posts.insertMany(newBlogPosts)
