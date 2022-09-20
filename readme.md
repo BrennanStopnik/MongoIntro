@@ -1,4 +1,4 @@
-## Mongo Assignment 1:
+## Mongo Assignment 1 - Part 1:
 
 - Create a new github repo:
 	- The title will be MongoIntro
@@ -54,6 +54,72 @@ db.posts.find({
    .sort({_id:-1})
    .limit(100)
 
+### - Greater than 5
+db.posts.find({
+    objectId: {
+        $gt: 5
+    }
+})
+   .projection({})
+   .sort({_id:-1})
+   .limit(100)
+
+### - CreatedAt greater than 4/1/2022
+db.posts.find({
+    createdAt: {
+        $gt: new Date("4/1/2022")
+    }
+})
+   .projection({})
+   .sort({_id:-1})
+   .limit(100)
+
+### - LastModified does not exist
+db.posts.find({
+    lastModified: {
+        $exists: false
+    }
+})
+   .projection({})
+   .sort({_id:-1})
+   .limit(100)
+
+### - CreatedAt type is a date
+db.posts.find({
+    "createdAt": {$type: "date"}
+})
+   .projection({})
+   .sort({_id:-1})
+   .limit(100)
+
+### - LastModified and CreatedAt in one
+db.posts.find({
+    lastModified: {$exists: false},
+    "createdAt": {$type: "date"}
+})
+   .projection({})
+   .sort({_id:-1})
+   .limit(100)
+
+### - Regex for a phrase
+db.posts.find({
+    text: {
+        $regex: /veritatis aliquam/
+    }
+})
+   .projection({})
+   .sort({_id:-1})
+   .limit(100)
+
+### - Blogs with qui in categories
+db.posts.find({
+    categories: {
+        $in: ["qui"]
+    }
+})
+   .projection({})
+   .sort({_id:-1})
+   .limit(100)
 
 
 
@@ -152,7 +218,6 @@ const blog9 = {
     title: "delectus",
     text: "Et natus maiores. Aut voluptatem autem velit aspernatur recusandae delectus cupiditate iste quia. Qui velit voluptas. Tempora facere repudiandae molestias sunt officia ut magnam dolor voluptatem. Voluptas iste aliquid consectetur. Numquam voluptas facilis vitae.\nDeserunt quia sunt. Natus delectus rerum ducimus aut qui amet vel molestias. Est natus nesciunt nemo temporibus labore. Maxime recusandae perferendis velit voluptatum vitae.\nRerum voluptatem in. Occaecati ea odit eius beatae facere ea quasi et. Nostrum illo doloremque reprehenderit excepturi omnis.",
     author: "Kelly Barton",
-    lastModified: new Date(),
     categories: ["esse", "dolor", "qui"],
     id: "01ed79b1-75c2-44e5-becb-10788158a7db",
     objectId: 9
@@ -163,7 +228,6 @@ const blog10 = {
     title: "aliquam",
     text: "Nulla expedita libero ut accusantium vitae repellat et. Accusantium ipsa expedita ratione harum provident quia totam. Dicta facilis dicta saepe et. Est et delectus veritatis nihil. Magnam dolor iste perspiciatis officia blanditiis possimus.\nTotam alias corrupti doloribus. Nihil laboriosam expedita omnis nihil. Eos delectus nulla sit magni aut quae distinctio deserunt.\nAutem et aliquam quasi nam. Vero enim ullam voluptas ut quidem libero rerum. Nam omnis illo voluptatem non tempore ipsum. Qui nulla fugiat rerum.",
     author: "Alfred Davis",
-    lastModified: new Date(),
     categories: ["rerum", "mollitia", "voluptas"],
     id: "4a571289-6d5c-4300-9614-53c6e1237d81",
     objectId: 10
