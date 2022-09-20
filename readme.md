@@ -86,7 +86,9 @@ db.posts.find({
 
 ### - CreatedAt type is a date
 db.posts.find({
-    "createdAt": {$type: "date"}
+    "createdAt": {
+        $type: "date"
+    }
 })
    .projection({})
    .sort({_id:-1})
@@ -94,8 +96,12 @@ db.posts.find({
 
 ### - LastModified and CreatedAt in one
 db.posts.find({
-    lastModified: {$exists: false},
-    "createdAt": {$type: "date"}
+    lastModified: {
+        $exists: false
+    },
+    "createdAt": {
+        $type: "date"
+    }
 })
    .projection({})
    .sort({_id:-1})
