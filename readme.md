@@ -1,0 +1,24 @@
+## Mongo Assignment 1:
+
+- Create a new github repo:
+	- The title will be MongoIntro
+	- _Important_: Initalize the repo WITH a README
+	- Clone the repo to your computer and add the link to populi
+- For the assignment, you will write out your queries in NoSQLBooster and then copy/paste the final queries into the README and commit
+- Create a new database BlogsDB and a new collection blogs
+- Insert the 10 sample blogs into the blogs collection with the following data types per field:
+	- _Note_: You will need to modify some of the blog fields to be the proper data types before inserting into the collection. E.G. objectId needs to be a number instead of a string.
+	- "createdAt": {String},
+	- "title": {String},
+	- "text": {String},
+	- "author": {String},
+	- "lastModified": {Date},
+	- "categories": {String[]},
+	- "id": {String},
+	- "objectId": {Number}
+- Write the following queries and add them to the README:
+	- Insert a new blog into the collection
+		- _Note_: Field data types must match sample blog data types
+	- Find one blog by author
+	- Find all blogs whose objectId is greater than 5
+	- Find all blogs whose createdAt is after April 1, 2022
