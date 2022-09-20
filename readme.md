@@ -86,7 +86,7 @@ db.posts.find({
 
 ### - CreatedAt type is a date
 db.posts.find({
-    "createdAt": {
+    createdAt: {
         $type: "date"
     }
 })
@@ -99,7 +99,7 @@ db.posts.find({
     lastModified: {
         $exists: false
     },
-    "createdAt": {
+    createdAt: {
         $type: "date"
     }
 })
