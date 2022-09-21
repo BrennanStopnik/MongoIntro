@@ -34,17 +34,28 @@
 	- Find a blog with a specific phrase (or a more complex regular expression if you want to practice regexs) in the text
 	- Find all blogs that have "qui" in the categories array
 
+## Mongo Assignment 1 - Part 3:
+
+- Write the following queries and add them to the README:
+	- Find all blogs in which the lastModified does not exist and set it
+	- From now on, all the following queries should update lastModified to be the current datetime 
+	- Find all blogs created after May 2022 and add "lorem" as a new category in the categories array
+	- Find all blogs that have the category "voluptas" and pull "voluptas" from the categories
+	- Find all blogs with "corrupti" in the categories and delete those blogs
+
 
 ## Assignment Results
 
-### - Add all blogs
+### Part 1
+
+#### - Add all blogs
 const newBlogPosts = [blog1, blog2, blog3,  blog4, blog5, blog6, blog7, blog8, blog9, blog10]
 db.posts.insertMany(newBlogPosts)
 
-### - Add single blog
+#### - Add single blog
 db.posts.insertOne(blog11)
 
-### - Find single blog by author
+#### - Find single blog by author
 db.posts.find({
     author: {
         $regex: /Turd/
@@ -54,7 +65,7 @@ db.posts.find({
    .sort({_id:-1})
    .limit(100)
 
-### - Greater than 5
+#### - Greater than 5
 db.posts.find({
     objectId: {
         $gt: 5
@@ -64,7 +75,7 @@ db.posts.find({
    .sort({_id:-1})
    .limit(100)
 
-### - CreatedAt greater than 4/1/2022
+#### - CreatedAt greater than 4/1/2022
 db.posts.find({
     createdAt: {
         $gt: new Date("4/1/2022")
@@ -74,7 +85,9 @@ db.posts.find({
    .sort({_id:-1})
    .limit(100)
 
-### - LastModified does not exist
+### Part 2
+
+#### - LastModified does not exist
 db.posts.find({
     lastModified: {
         $exists: false
@@ -84,7 +97,7 @@ db.posts.find({
    .sort({_id:-1})
    .limit(100)
 
-### - CreatedAt type is a date
+#### - CreatedAt type is a date
 db.posts.find({
     createdAt: {
         $type: "date"
@@ -94,7 +107,7 @@ db.posts.find({
    .sort({_id:-1})
    .limit(100)
 
-### - LastModified and CreatedAt in one
+#### - LastModified and CreatedAt in one
 db.posts.find({
     lastModified: {
         $exists: false
@@ -107,7 +120,7 @@ db.posts.find({
    .sort({_id:-1})
    .limit(100)
 
-### - Regex for a phrase
+#### - Regex for a phrase
 db.posts.find({
     text: {
         $regex: /veritatis aliquam/
@@ -117,7 +130,7 @@ db.posts.find({
    .sort({_id:-1})
    .limit(100)
 
-### - Blogs with qui in categories
+#### - Blogs with qui in categories
 db.posts.find({
     categories: {
         $in: ["qui"]
@@ -128,8 +141,59 @@ db.posts.find({
    .limit(100)
 
 
+### Part 3
 
-### - All blogs data as variables with the new one added to the end as number 11
+#### Set LastModified
+db.posts.updateMany({
+    lastModified: {
+        $exists: false
+    }
+},{
+    $set:{
+        lastModified: new Date()
+    }
+})
+
+### Add lorem and update lastModified
+db.posts.updateMany({
+    createdAt: {
+        $gt: new Date("5/1/2022")
+    }
+},{
+    $addToSet: {
+        categories: "lorem"
+    },
+    $set: {
+        lastModified: new Date()
+        
+    }
+})
+
+### Find "voluptas" and pull from catorgies
+db.posts.updateMany({
+    categories: {
+        $in: ["voluptas"]
+    }
+},{
+    $pull: {
+        categories: "voluptas"
+    },
+    $set: {
+        lastModified: new Date()
+    }
+})
+
+### Delete blogs with corrupti in categories
+db.posts.deleteMany({
+    categories:{
+        $in: ["corrupti"]
+    }
+})
+
+
+
+
+## - All blogs data as variables with the new one added to the end as number 11
 
 const blog1 = {
     createdAt: new Date("2022-04-16T06:33:29.080Z"),
